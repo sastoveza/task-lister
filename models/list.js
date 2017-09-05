@@ -16,7 +16,8 @@ const List = (function createListClass(){
       <div id="list-tasks">
         <form id="delete-${this.id}">
         <h5>${this.name}</h5>
-        <input data-list-id='${this.id}' type="submit" value="X">
+        <input data-list-id='${this.id}' type="submit" value="X" data-type=
+        "list">
         <ul>
           ${tasks}
         </ul>

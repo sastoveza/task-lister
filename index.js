@@ -8,11 +8,11 @@ document.addEventListener('DOMContentLoaded', function(){
 
     let listName = document.getElementById('add-list');
     let list = new List(listName.value);
-    console.log(list);
+    // console.log(list);
 
     const allListsHTML = List.renderAll()
     const taskFormTemplate = list.renderForm()
-
+    console.log(allListsHTML)
 
     parentEl.innerHTML = allListsHTML
     taskForm.innerHTML = taskFormTemplate
@@ -35,20 +35,32 @@ document.addEventListener('DOMContentLoaded', function(){
   })
 
   let container = document.getElementById('container')
-  container.addEventListener('click', function(){
-    if (event.target.value === 'X') {
-      event.preventDefault();
-      let toDelete = List.all().find((list) => list.id === parseInt(event.target.dataset.listId))
-      // debugger;
-      toDelete.delete();
+	container.addEventListener('click', function(){
+		if (event.target.value === 'X') {
+			if(event.target.dataset.type === "list"){
+					event.preventDefault();
+					let toDelete = List.all().find((list) => list.id === parseInt(event.target.dataset.listId))
+					console.log(event.target.dataset);
+					// debugger;
+					toDelete.delete();
 
-      const allListsHTML = List.renderAll()
-      parentEl.innerHTML = allListsHTML
-      if (List.all().length > 0){
-        taskForm.innerHTML = List.all().map(list => list.renderForm())
-      } else {
-        taskForm.innerHTML = ""
-      }
-    }
-  })
+					const allListsHTML = List.renderAll()
+					parentEl.innerHTML = allListsHTML
+					if (List.all().length > 0){
+						taskForm.innerHTML = List.all().map(list => list.renderForm())
+					} else {
+						taskForm.innerHTML = ""
+					}
+				}else if(event.target.dataset.type === "task"){
+					event.preventDefault();
+					// debugger;
+					console.log(event.target.dataset)
+					let toDelete = Task.all().find((task) => task.id === parseInt(event.target.id.split("-")[1]))
+					toDelete.delete();
+
+					
+
+				}
+			}
+		})
 })
