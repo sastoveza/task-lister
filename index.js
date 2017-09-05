@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function(){
       event.preventDefault();
 
       let findList = List.all().find((list) => list.id === parseInt(formEm.select_list.value))
+      console.log(formEm);
       let task = new Task(findList, formEm.task_description.value, formEm.task_priority.value);
       console.log(task);
 
@@ -58,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function(){
 					let toDelete = Task.all().find((task) => task.id === parseInt(event.target.id.split("-")[1]))
 					toDelete.delete();
 
-					
+
 
 				}
 			}

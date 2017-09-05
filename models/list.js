@@ -1,5 +1,5 @@
 const List = (function createListClass(){
-  const all = []
+  let all = []
   let counter = 0
 
   return class List{
@@ -11,7 +11,7 @@ const List = (function createListClass(){
     }
 
     render(){
-      const tasks = this.tasks.map((task) => task.render()).join("")
+      let tasks = this.tasks.map((task) => task.render()).join("")
       return `
       <div id="list-tasks">
         <form id="delete-${this.id}">

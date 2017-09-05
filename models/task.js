@@ -25,9 +25,13 @@ const Task = (function createTask(){
     }
 
     delete(){
+    	// debugger
+      let index = this.list.tasks.indexOf(this);
       let element = document.getElementById(`task ${this.id}`);
+
+      this.list.tasks.splice(index, 1);
+      Task.all().splice(Task.all().indexOf(this), 1);
       element.parentNode.removeChild(element);
-      Task.all().splice(Task.all().indexOf(this), 1)
     }
 
 
@@ -36,7 +40,6 @@ const Task = (function createTask(){
       return all
     }
 
-    
 
   }
 
